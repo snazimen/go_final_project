@@ -8,7 +8,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/joho/godotenv"
-	"github.com/snazimen/go_final_project/tree/total/database"
+	"github.com/snazimen/go_final_project/database"
 )
 
 func main() {
