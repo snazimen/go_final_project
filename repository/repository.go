@@ -1,4 +1,4 @@
-package database
+package repository
 
 import (
 	"os"
@@ -7,15 +7,7 @@ import (
 	_ "modernc.org/sqlite"
 )
 
-type Database struct {
-	Db *sqlx.DB
-}
-
-var DB Database
-
-func ConnectDB() error {
-
-	dbFile := os.Getenv("TODO_DBFILE")
+func NewDB(dbFile string) (*sqlx.DB, error) {
 	var install bool
 	_, err := os.Stat(dbFile)
 	if err != nil {
@@ -25,27 +17,23 @@ func ConnectDB() error {
 	if install {
 		_, err = os.Create(dbFile)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
 
 	db, err := sqlx.Connect("sqlite", dbFile)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	if install {
 		err = createTable(db)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
 
-	DB = Database{
-		Db: db,
-	}
-
-	return nil
+	return db, nil
 }
 
 func createTable(db *sqlx.DB) error {
