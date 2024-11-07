@@ -98,7 +98,7 @@ func (t *TaskUsecase) CreateTask(task *model.Task, pastDay bool) (*model.TaskRes
 		task.Date = nextDate
 	}
 
-	taskId, err := t.DB.CreateTask(task)
+	taskId, err := t.DB.Create(task)
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +121,7 @@ func (t *TaskUsecase) GetTasks(searchString string) (model.TasksResp, error) {
 	return t.DB.GetTasks()
 }
 
-func (t *TaskUsecase) GetTaskById(id string) (*model.Task, error) {
+func (t *TaskUsecase) GetTask(id string) (*model.Task, error) {
 	return t.DB.GetTaskById(id)
 }
 

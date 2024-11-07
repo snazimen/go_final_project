@@ -180,7 +180,7 @@ func (h *TaskHandler) GetTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	taskResp, err := h.uc.GetTaskById(taskId)
+	taskResp, err := h.uc.GetTask(taskId)
 	if err != nil {
 		log.Errorf("http.GetTask: %+v", err)
 

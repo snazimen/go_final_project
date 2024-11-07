@@ -10,8 +10,6 @@ import (
 	"github.com/snazimen/go_final_project/model"
 )
 
-var _ Task = (*TaskRepo)(nil)
-
 type TaskRepo struct {
 	Db *sqlx.DB
 }
@@ -22,7 +20,7 @@ func NewNewRepository(db *sqlx.DB) *TaskRepo {
 	return &TaskRepo{Db: db}
 }
 
-func (r *TaskRepo) CreateTask(task *model.Task) (int64, error) {
+func (r *TaskRepo) Create(task *model.Task) (int64, error) {
 	res, err := r.Db.Exec(SQLCreateTask, task.Date, task.Title, task.Comment, task.Repeat)
 	if err != nil {
 		log.Debugf("Database.CreateTask: %+v", err)
@@ -229,4 +227,5 @@ func (r *TaskRepo) DeleteTask(id string) error {
 	}
 
 	return nil
+
 }
