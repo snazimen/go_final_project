@@ -8,4 +8,6 @@ RUN go mod download
 
 RUN  go build -o /snazimen ./cmd/main.go
 
+EXPOSE 7540
+
 CMD ["/snazimen"]
