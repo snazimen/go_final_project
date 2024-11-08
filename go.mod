@@ -1,6 +1,6 @@
 module github.com/snazimen/go_final_project
 
-go 1.22.0
+go 1.23.0
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
